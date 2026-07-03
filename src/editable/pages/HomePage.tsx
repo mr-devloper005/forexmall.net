@@ -23,13 +23,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 type TaskFeedItem = { task: (typeof SITE_CONFIG.tasks)[number]; posts: SitePost[] }
+const hiddenHomeTasks = new Set<TaskKey>(['listing', 'classified'])
 
 function uniquePosts(posts: SitePost[]) {
   return Array.from(new Map(posts.map((post) => [post.slug || post.id || post.title, post])).values())
 }
 
 export default async function HomePage() {
-  const primaryTask = (SITE_CONFIG.tasks.find((task) => task.enabled)?.key || 'article') as TaskKey
+  const primaryTask = (SITE_CONFIG.tasks.find((task) => task.enabled && !hiddenHomeTasks.has(task.key as TaskKey))?.key || 'article') as TaskKey
   const primaryRoute = SITE_CONFIG.taskViews[primaryTask] || `/${primaryTask}`
   const taskFeed: TaskFeedItem[] = await fetchHomeTaskFeed(12, { timeoutMs: 2500 })
   const primaryPosts = uniquePosts(taskFeed.find(({ task }) => task.key === primaryTask)?.posts || taskFeed.flatMap(({ posts }) => posts)).slice(0, 24)

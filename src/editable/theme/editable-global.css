@@ -25,10 +25,8 @@ body {
 }
 
 .editable-site-root {
-  /* Yelp-style clean sans, used for both display and body. */
-  --editable-font-display: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --editable-font-display: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
   --editable-font-body: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  /* Premium easing curve used across every hover + transition. */
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   font-family: var(--editable-font-body);
 }
@@ -83,7 +81,7 @@ body {
 .editable-site-root h4,
 .editable-display {
   font-family: var(--editable-font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .editable-site-root p,
@@ -120,4 +118,38 @@ body {
 
 .article-content a {
   color: var(--slot4-accent-fill);
+}
+
+.editable-action-rail {
+  position: fixed;
+  right: 0;
+  top: 42%;
+  z-index: 45;
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--editable-border);
+  background: #ffffff;
+  padding: 8px;
+  box-shadow: 0 8px 24px rgba(8, 6, 22, 0.12);
+}
+
+.editable-bottom-dock {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 44;
+  display: none;
+  border-top: 1px solid var(--editable-border);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 767px) {
+  .editable-action-rail {
+    display: none;
+  }
+
+  .editable-bottom-dock {
+    display: grid;
+  }
 }
