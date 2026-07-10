@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import {
-  ArrowRight, BadgeCheck, BriefcaseBusiness, Building2, Check, Clock3, Compass,
-  FileText, MapPin, Medal, MessageCircle, Search, ShieldCheck, Sparkles, Star,
-  UserRound,
+  ArrowRight, BadgeCheck, BriefcaseBusiness, Building2, Clock3, Compass,
+  FileText, Medal, MessageCircle, Search, ShieldCheck, Sparkles, Star,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { SitePost } from '@/lib/site-connector'
